@@ -52,8 +52,33 @@ export class AuctionFactoryService {
 
    //Get metamask signer
   async checkWalletConnection(ethereum: any) {
-    const metamaskWalletProvider = new ethers.providers.Web3Provider(ethereum);
-    console.log(metamaskWalletProvider)
+    //const metamaskWalletProvider = new ethers.providers.Web3Provider(ethereum); try this
+    try {
+      if (!ethereum) {
+        console.log('Install metamask')
+        window.alert('Metamask has to be installed !')
+      } else {
+        console.log('Ethereum object found! ')
+      }
+
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+
+      if (accounts.length !== 0) {
+        const account = accounts[0];
+        console.log('Found authorized account!', account);
+        this.currentAccount = account;
+        this.isLoggedIn = true;
+        return true;
+      } else {
+        console.log('No authorized account found!')
+        this.isLoggedIn = false;
+        window.alert('Connect site to MetaMask account to use this page! ');
+        return false;
+      }
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
   }
 
   //getWalletBalance
