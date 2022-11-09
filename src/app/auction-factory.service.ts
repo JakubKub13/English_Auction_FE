@@ -49,4 +49,10 @@ export class AuctionFactoryService {
     this.nftJSON = NftJSON;
     this.provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/UYC8suTjPixZ8Ku7w4YQcEUuLGwKqP70");
    }
+
+   //Get metamask signer
+  async checkWalletConnection(ethereum: any) {
+    const metamaskWalletProvider = new ethers.providers.Web3Provider(ethereum);
+    console.log(metamaskWalletProvider)
+  }
 }
