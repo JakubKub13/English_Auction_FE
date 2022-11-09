@@ -88,6 +88,8 @@ export class MDaiService {
     } else {
       mDaiContract = new ethers.Contract(this.mDAIaddress, this.mDaiJSON.abi, this.provider);
     }
+
+    return mDaiContract;
   }
   
   // get DAI token balance 
