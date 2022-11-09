@@ -50,7 +50,7 @@ export class AuctionFactoryService {
     this.provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/UYC8suTjPixZ8Ku7w4YQcEUuLGwKqP70");
    }
 
-   //Get metamask signer
+  //Get metamask signer
   async checkWalletConnection(ethereum: any) {
     //const metamaskWalletProvider = new ethers.providers.Web3Provider(ethereum); try this
     try {
@@ -81,7 +81,24 @@ export class AuctionFactoryService {
     }
   }
 
+  // Connect to metamask on button click
+  async connectToWallet(ethereum: any): Promise<string> {
+    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+    const account = accounts[0];
+    this.currentAccount = account;
+    this.isLoggedIn = true;
+    return this.currentAccount
+  }
+
+  // Get metamask wallet signer
+  async getMetamaskWalletSigner(ethereum: any) {
+    const metamaskWalletProvider = new ethers.providers.Web3Provider(ethereum);  //window.ethereum
+    return metamaskWalletProvider.getSigner();
+  }
+
   //getWalletBalance
 
   //createAuctionImplementation
+
+  //getBalance
 }
