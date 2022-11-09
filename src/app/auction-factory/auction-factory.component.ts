@@ -5,6 +5,9 @@ import { NftService } from '../nft.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ethers } from 'ethers';
 import bigNumberToETHString from 'src/helpers/bigNumberToETHString';
+
+declare var window: any
+
 @Component({
   selector: 'app-auction-factory',
   templateUrl: './auction-factory.component.html',
