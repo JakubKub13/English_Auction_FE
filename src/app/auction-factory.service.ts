@@ -55,4 +55,8 @@ export class AuctionFactoryService {
     const metamaskWalletProvider = new ethers.providers.Web3Provider(ethereum);
     console.log(metamaskWalletProvider)
   }
+
+  //getWalletBalance
+
+  //createAuctionImplementation
 }
