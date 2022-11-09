@@ -78,8 +78,18 @@ export class MDaiService {
     const metamaskWalletProvider = new ethers.providers.Web3Provider(ethereum);  //window.ethereum
     return metamaskWalletProvider.getSigner();
   }
-  
 
+  // Initialize Dai contract
+  async getMDaiTokenContract(signer?: ethers.Signer) {
+    let mDaiContract: ethers.Contract;
+
+    if (signer) {
+      mDaiContract = new ethers.Contract(this.mDAIaddress, this.mDaiJSON.abi, signer);
+    } else {
+      mDaiContract = new ethers.Contract(this.mDAIaddress, this.mDaiJSON.abi, this.provider);
+    }
+  }
+  
   // get DAI token balance 
   async getDaiTokenBalance(ethereum: any) {
     try {
