@@ -14,7 +14,7 @@ export class MDaiService {
 
   addressesJSON: {
     auctionFactory: string,
-    auctionImplementation1: string,
+    auctionImplementation4: string,
     mDAI: string,
     nft: string
   };

@@ -23,7 +23,7 @@ export class AuctionFactoryService {
 
   addressesJSON: {
     auctionFactory: string,
-    auctionImplementation1: string,
+    auctionImplementation4: string,
     mDAI: string,
     nft: string
   }
@@ -41,7 +41,7 @@ export class AuctionFactoryService {
     this.contractOwner = '';
     this.addressesJSON = AddressesJSON;
     this.auctionFactoryAddress = this.addressesJSON.auctionFactory;
-    this.auctionImplementationAddress = this.addressesJSON.auctionImplementation1;
+    this.auctionImplementationAddress = this.addressesJSON.auctionImplementation4;
     this.nftAddress = this.addressesJSON.nft;
     this.factoryFee = 0.03;
     this.mDAIaddress = this.addressesJSON.mDAI;
