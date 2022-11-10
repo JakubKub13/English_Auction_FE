@@ -59,22 +59,21 @@ export class AuctionFactoryComponent implements OnInit {
     console.log(auctionToken);
 
 
-    // const isCreationSuccess = await this.auctionFactoryService.createAuctionImplementation(
-    //   ethereum,
-    //   nftAddress,
-    //   nftId,
-    //   startingBid, 
-    //   sellerAddress, 
-    //   auctionToken,
-    //   {value: ethers.utils.parseEther(this.factoryFee.toFixed(18))}
-    // );
+    const isCreationSuccess = await this.auctionFactoryService.createAuctionImplementation(
+      ethereum,
+      nftAddress!,
+      Number(nftId)!,
+      Number(startingBid)!, 
+      sellerAddress!, 
+      auctionToken!,
+    );
 
-    // if(isCreationSuccess) {
-    //   window.alert('Auction was successfully created! ');
-    //   this.currentWalletBalance = await this.auctionFactoryService.getWalletBalance(ethereum)
-    // } else window.alert('Creation of auction implementation unsuccessful try again');
-    // this.isAttemptingToCreateAuction = false;
-    // await this.ngOnInit();
+    if(isCreationSuccess) {
+      window.alert('Auction was successfully created! ');
+      this.currentWalletBalance = await this.auctionFactoryService.getWalletBalance(ethereum)
+    } else window.alert('Creation of auction implementation unsuccessful try again');
+    this.isAttemptingToCreateAuction = false;
+    await this.ngOnInit();
   }
 
 }

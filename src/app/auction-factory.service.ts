@@ -137,11 +137,11 @@ export class AuctionFactoryService {
       const currentWallet = await this.getMetamaskWalletSigner(ethereum)
       const auctionFactory = await this.getAuctionFactoryContract();
       const auctionImplementationCreationTx = await auctionFactory.connect(currentWallet).createAuction(
-        nftAddress!,
-        nftId!,
-        ethers.utils.parseEther(startingBid.toString()!),
-        seller!,
-        paymentTokenAddress!,
+        nftAddress,
+        nftId,
+        ethers.utils.parseEther(startingBid.toString()),
+        seller,
+        paymentTokenAddress,
         { value: ethers.utils.parseEther(this.factoryFee.toFixed(18))}
       );
       const auctionImplementTxReceipt = await this.provider.getTransactionReceipt(auctionImplementationCreationTx.hash);
