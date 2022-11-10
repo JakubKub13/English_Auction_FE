@@ -1,1 +1,20 @@
 <p>auction-factory works!</p>
+
+<div class="card-footer py-3 d-flex flex-column gap-3">
+    <form
+      class="d-flex flex-column gap-3 w-100"
+      [formGroup]="createAuctionForm"
+      (ngSubmit)="attemptToCreateAuction()"
+    >
+      <div class="mb-3">
+        <label for="amount-of-tokens-to-buy" class="form-label"
+          >1 ETH gets 1 Token</label
+        >
+        <input
+          type="text"
+          class="form-control input-lg"
+          placeholder="amount of tokens to buy"
+          id="amount-of-tokens-to-buy"
+          formControlName="lotteryTokenAmount"
+        />
+      </div>

@@ -52,23 +52,29 @@ export class AuctionFactoryComponent implements OnInit {
     this.isAttemptingToCreateAuction = true;
     const { ethereum } = window;
     const { nftAddress, nftId, startingBid, sellerAddress, auctionToken} = this.createAuctionForm.value;
+    console.log(nftAddress);
+    console.log(nftId);
+    console.log(startingBid);
+    console.log(sellerAddress);
+    console.log(auctionToken);
 
-    const isCreationSuccess = await this.auctionFactoryService.createAuctionImplementation(
-      ethereum,
-      nftAddress,
-      nftId,
-      startingBid, 
-      sellerAddress, 
-      auctionToken,
-      {value: ethers.utils.parseEther(this.factoryFee.toFixed(18))}
-    );
 
-    if(isCreationSuccess) {
-      window.alert('Auction was successfully created! ');
-      this.currentWalletBalance = await this.auctionFactoryService.getWalletBalance(ethereum)
-    } else window.alert('Creation of auction implementation unsuccessful try again');
-    this.isAttemptingToCreateAuction = false;
-    await this.ngOnInit();
+    // const isCreationSuccess = await this.auctionFactoryService.createAuctionImplementation(
+    //   ethereum,
+    //   nftAddress,
+    //   nftId,
+    //   startingBid, 
+    //   sellerAddress, 
+    //   auctionToken,
+    //   {value: ethers.utils.parseEther(this.factoryFee.toFixed(18))}
+    // );
+
+    // if(isCreationSuccess) {
+    //   window.alert('Auction was successfully created! ');
+    //   this.currentWalletBalance = await this.auctionFactoryService.getWalletBalance(ethereum)
+    // } else window.alert('Creation of auction implementation unsuccessful try again');
+    // this.isAttemptingToCreateAuction = false;
+    // await this.ngOnInit();
   }
 
 }
