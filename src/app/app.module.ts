@@ -13,7 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     AuctionFactoryComponent,
     AuctionFactoryOwnerComponent,
-    AuctionImplementationComponent
+    AuctionImplementationComponent,
   ],
   imports: [
     BrowserModule,

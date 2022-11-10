@@ -36,6 +36,4 @@ export class AppComponent {
       window.alert('Wallet connected !')
     }
   }
-
-  
 }
