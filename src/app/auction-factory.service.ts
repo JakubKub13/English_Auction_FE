@@ -19,6 +19,7 @@ export class AuctionFactoryService {
   auctionImplementationAddress: string
   nftAddress: string
   mDAIaddress: string
+  factoryFee: Number
 
   addressesJSON: {
     auctionFactory: string,
@@ -42,6 +43,7 @@ export class AuctionFactoryService {
     this.auctionFactoryAddress = this.addressesJSON.auctionFactory;
     this.auctionImplementationAddress = this.addressesJSON.auctionImplementation1;
     this.nftAddress = this.addressesJSON.nft;
+    this.factoryFee = 0.03;
     this.mDAIaddress = this.addressesJSON.mDAI;
     this.auctionFactoryJSON = AuctionFactoryJSON;
     this.auctionImplementationJSON = AuctionImplementationJSON;
@@ -120,6 +122,37 @@ export class AuctionFactoryService {
     auctionFactoryContract = await this.getAuctionFactoryContract();
     const owner = await auctionFactoryContract.owner()
     this.contractOwner = owner;
+  }
+
+  //Create auction implementation
+  async createAuctionImplementation(
+    ethereum: any,
+    nftAddress: string,
+    nftId: Number,
+    startingBid: Number,
+    seller: string,
+    paymentTokenAddress: string
+  ): Promise<Boolean> {
+    try {
+      const currentWallet = await this.getMetamaskWalletSigner(ethereum)
+      const auctionFactory = await this.getAuctionFactoryContract();
+      const auctionImplementationCreationTx = await auctionFactory.connect(currentWallet).createAuction(
+        nftAddress!,
+        nftId!,
+        ethers.utils.parseEther(startingBid.toString()!),
+        seller!,
+        paymentTokenAddress!,
+        { value: ethers.utils.parseEther(this.factoryFee.toFixed(18))}
+      );
+      const auctionImplementTxReceipt = await this.provider.getTransactionReceipt(auctionImplementationCreationTx.hash);
+      console.log(auctionImplementTxReceipt)
+      return true;
+    
+    } catch (error) {
+      console.log(error)
+      window.alert(error)
+      return false
+    } 
   }
 
   // getDeployed Auction Implementations

@@ -1,4 +1,4 @@
-<p>auction-factory works!</p>
+
 
 <div class="card-footer py-3 d-flex flex-column gap-3">
     <form
@@ -7,18 +7,48 @@
       (ngSubmit)="attemptToCreateAuction()"
     >
       <div class="mb-3">
-        <label for="amount-of-tokens-to-buy" class="form-label"
-          >1 ETH gets 1 Token</label
+        <label for="create-auction" class="form-label"
+          >Create your own Carbon certificate auction</label
         >
         <input
           type="text"
           class="form-control input-lg"
-          placeholder="amount of tokens to buy"
-          id="amount-of-tokens-to-buy"
-          formControlName="lotteryTokenAmount"
+          placeholder="nft address"
+          id="nft-address"
+          formControlName="nftAddress"
+        />
+
+        <input
+          type="number"
+          class="form-control input-lg"
+          placeholder="nft ID"
+          id="nft ID"
+          formControlName="nftId"
+        />
+
+        <input
+          type="number"
+          class="form-control input-lg"
+          placeholder="starting bid"
+          id="starting-bid"
+          formControlName="startingBid"
+        />
+        <input
+          type="text"
+          class="form-control input-lg"
+          placeholder="address of seller"
+          id="address-of-seller"
+          formControlName="sellerAddress"
+        />
+        <input
+          type="text"
+          class="form-control input-lg"
+          placeholder="Address of payment Token"
+          id="address-of-payment-token"
+          formControlName="auctionToken"
         />
       </div>
-
+    
       <button type="submit" class="btn btn-outline-secondary w-100 py-1">
         <span *ngIf="isAttemptingToCreateAuction === false">Create Auction</span>
         <div

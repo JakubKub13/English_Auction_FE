@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ethers, BigNumber } from 'ethers';
 import bigNumberToETHString from 'src/helpers/bigNumberToETHString';
 import * as AddressesJSON from '../assets/contractAddresses.json';
-import * as mockDaiJSON from '../assets/mDAI.json';
+import * as MockDaiJSON from '../assets/mDAI.json';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class MDaiService {
     nft: string
   };
 
-  mDaiJSON: any;
+  mockDaiJSON: any;
 
   provider: ethers.providers.JsonRpcProvider;
 
@@ -29,6 +29,7 @@ export class MDaiService {
     this.currentAccount = '';
     this.isLoggedIn = false;
     this.addressesJSON = AddressesJSON;
+    this.mockDaiJSON = MockDaiJSON
     this.mDAIaddress = this.addressesJSON.mDAI;
     this.provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/UYC8suTjPixZ8Ku7w4YQcEUuLGwKqP70");
   }
@@ -84,9 +85,9 @@ export class MDaiService {
     let mDaiContract: ethers.Contract;
 
     if (signer) {
-      mDaiContract = new ethers.Contract(this.mDAIaddress, this.mDaiJSON.abi, signer);
+      mDaiContract = new ethers.Contract(this.mDAIaddress, this.mockDaiJSON.abi, signer);
     } else {
-      mDaiContract = new ethers.Contract(this.mDAIaddress, this.mDaiJSON.abi, this.provider);
+      mDaiContract = new ethers.Contract(this.mDAIaddress, this.mockDaiJSON.abi, this.provider);
     }
 
     return mDaiContract;
@@ -100,7 +101,7 @@ export class MDaiService {
       const currentAccountTokenBalance = await mDai.balanceOf(await currentWallet.getAddress());
       return bigNumberToETHString(currentAccountTokenBalance)
     } catch (error) {
-      console.log('Can not get token balance: ', error);
+      console.log(`Can not get token balance: ${error}`);
       window.alert(`Can not get token balance: ${error}`);
       return '0';
     }
