@@ -65,7 +65,7 @@ export class AuctionFactoryComponent implements OnInit {
 
     if(isCreationSuccess) {
       window.alert('Auction was successfully created! ');
-      this.currentWalletBalance = await this.auctionFactoryService.getBalance(ethereum)
+      this.currentWalletBalance = await this.auctionFactoryService.getWalletBalance(ethereum)
     } else window.alert('Creation of auction implementation unsuccessful try again');
     this.isAttemptingToCreateAuction = false;
     await this.ngOnInit();
