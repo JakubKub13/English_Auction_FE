@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AuctionFactoryComponent } from './auction-factory/auction-factory.component';
 import { AuctionFactoryOwnerComponent } from './auction-factory-owner/auction-factory-owner.component';
 import { AuctionImplementationComponent } from './auction-implementation/auction-implementation.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AuctionImplementationComponent } from './auction-implementation/auction
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     AppRoutingModule,
     ReactiveFormsModule,
   ],

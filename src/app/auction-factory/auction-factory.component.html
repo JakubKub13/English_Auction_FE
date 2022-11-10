@@ -18,3 +18,17 @@
           formControlName="lotteryTokenAmount"
         />
       </div>
+
+      <button type="submit" class="btn btn-outline-secondary w-100 py-1">
+        <span *ngIf="isAttemptingToCreateAuction === false">Create Auction</span>
+        <div
+          *ngIf="isAttemptingToCreateAuction === true"
+          class="spinner-border"
+          role="status"
+        >
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </button>
+    </form>
+
+</div>
