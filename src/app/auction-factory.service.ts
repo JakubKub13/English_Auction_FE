@@ -111,9 +111,20 @@ export class AuctionFactoryService {
     } else {
       auctionFactoryContract = new ethers.Contract(this.auctionFactoryAddress, this.auctionFactoryJSON.abi, this.provider);
     }
+    return auctionFactoryContract
   }
 
- 
+  // Load contract owner
+  async loadContractOwner(ethereum: any) {
+    let auctionFactoryContract: ethers.Contract;
+    auctionFactoryContract = await this.getAuctionFactoryContract();
+    const owner = await auctionFactoryContract.owner()
+    this.contractOwner = owner;
+  }
+
+  // getDeployed Auction Implementations
+
+  
 
   
 }
