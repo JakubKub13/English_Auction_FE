@@ -1,15 +1,19 @@
-<div>The right place to auction your tokenized Carbon certificates</div>
 
-<div class="card-footer py-3 d-flex flex-column gap-3">
+<div class="card-footer py-3 px-5 d-flex flex-column gap-5 row align-items-center">
+  <div class="d-flex align-items-center justify-content-center">
+    <h3>The right place to auction your tokenized Carbon certificates</h3>
+  </div>
+  
     <form
-      class="d-flex flex-column gap-3 w-50"
+      class="d-flex flex-column gap-3 w-25"
       [formGroup]="createAuctionForm"
       (ngSubmit)="attemptToCreateAuction()"
     >
-      <div class="mb-3">
+      <div class="mb-5">
         <label for="create-auction" class="form-label"
           >Create your own Carbon certificate auction</label
         >
+      <div class="mb-2">
         <input
           type="text"
           class="form-control input-lg"
@@ -17,7 +21,9 @@
           id="nft-address"
           formControlName="nftAddress"
         />
+      </div>
 
+      <div class="mb-2">
         <input
           type="number"
           class="form-control input-lg"
@@ -25,7 +31,9 @@
           id="nft ID"
           formControlName="nftId"
         />
+      </div>
 
+      <div class="mb-2">
         <input
           type="number"
           class="form-control input-lg"
@@ -33,6 +41,9 @@
           id="starting-bid"
           formControlName="startingBid"
         />
+      </div>
+      
+      <div class="mb-2" >
         <input
           type="text"
           class="form-control input-lg"
@@ -40,6 +51,9 @@
           id="address-of-seller"
           formControlName="sellerAddress"
         />
+      </div>
+      
+      <div class="mb-0">
         <input
           type="text"
           class="form-control input-lg"
@@ -48,8 +62,10 @@
           formControlName="auctionToken"
         />
       </div>
+    </div>
     
-      <button type="submit" class="btn btn-outline-primary w-50 py-1">
+    <div class="py-0 px-3 d-flex flex-column gap-5 row align-items-center">
+      <button type="submit" class="btn btn-outline-primary w-50 py-0 px-1 ">
         <span *ngIf="isAttemptingToCreateAuction === false">Create Auction</span>
         <div
           *ngIf="isAttemptingToCreateAuction === true"
@@ -59,6 +75,8 @@
           <span class="visually-hidden">Loading...</span>
         </div>
       </button>
+    </div>
+
     </form>
 
 </div>
