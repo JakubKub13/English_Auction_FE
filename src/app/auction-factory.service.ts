@@ -178,7 +178,7 @@ export class AuctionFactoryService {
       const currentWallet = await this.getMetamaskWalletSigner(ethereum)
       const auctionFactory = await this.getAuctionFactoryContract();
       const ownerWithdrawTx = await auctionFactory.connect(currentWallet).ownerFeeWithdraw(
-        currentWallet._address,
+        addressToSendFundsTo,
         ethers.utils.parseEther(amountToWithdraw.toString())
       );
       const auctionImplementTxReceipt = await this.provider.getTransactionReceipt(ownerWithdrawTx.hash);

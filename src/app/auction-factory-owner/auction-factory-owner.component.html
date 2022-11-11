@@ -3,7 +3,7 @@
     Only the contract owner may use this area!
 </div>
 
-
+<div *ngIf="isOwnerLoggedIn">
 <div class="card-footer py-3 px-5 d-flex flex-column gap-5 row align-items-center">
     <div class="d-flex align-items-center justify-content-center">
       <h4>Owner's place</h4>
@@ -56,7 +56,7 @@
       </form>
   
 </div>
-<div *ngIf="isOwnerLoggedIn">
+
     <div>
         <div class="d-flex flex-column align-items-center">
             <span
@@ -76,6 +76,5 @@
             </span>
           </div>
     </div>
-
 </div>
 </section>

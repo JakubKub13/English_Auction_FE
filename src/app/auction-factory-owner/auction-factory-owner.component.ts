@@ -52,13 +52,15 @@ export class AuctionFactoryOwnerComponent implements OnInit {
     const isWithdrawalSuccess = await this.auctionFactoryService.ownerFeePoolWithdraw(
       ethereum,
       addressToSendFundsTo!,
-      Number(amountToWithdraw)!
+      Number(amountToWithdraw)
     )
 
     if(isWithdrawalSuccess) {
       window.alert('Owner fee pool was successfully withdrawn! ');
       this.currentOwnerFeePoolBalance = await this.auctionFactoryService.getOwnerFeePoolBalance(ethereum);
     } else window.alert('Withdrawal of owner fee pool was unsuccessful try again');
+    console.log(addressToSendFundsTo);
+    console.log(amountToWithdraw);
     this.isAttemptingToWithdrawOwnerFee = false;
     await this.ngOnInit();
   }
