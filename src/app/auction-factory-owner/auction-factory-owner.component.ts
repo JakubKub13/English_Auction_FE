@@ -16,7 +16,7 @@ export class AuctionFactoryOwnerComponent implements OnInit {
   currentOwnerFeePoolBalance: string;
 
 
-  withdrawOwnerForm = this.isLoadingFeePoolBalance.group({
+  withdrawOwnerForm = this.fb.group({
     addressToSendFundsTo: ['', [Validators.required]],
     amountToWithdraw: ['', [Validators.required]]
   });
@@ -32,12 +32,26 @@ export class AuctionFactoryOwnerComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const { ethereum } = window;
-    this.currentOwnerFeePoolBalance = await this.auctionFactoryService.getOwnerFeePoolBalance();
+    this.currentOwnerFeePoolBalance = await this.auctionFactoryService.getOwnerFeePoolBalance(ethereum);
     this.isLoadingFeePoolBalance = false;
   }
 
-  async attempToWithdrawOwnerFeePool() {
-    this.attempToWithdrawOwnerFeePool = true;
-  }
+  async attemptToWithdrawOwnerFeePool() {
+    this.isAttemptingToWithdrawOwnerFee = true;
+    const { ethereum } = window;
+    const { addressToSendFundsTo, amountToWithdraw } = this.withdrawOwnerForm.value;
 
+    const isWithdrawalSuccess = await this.auctionFactoryService.ownerFeePoolWithdraw(
+      ethereum,
+      addressToSendFundsTo!,
+      Number(amountToWithdraw)!
+    )
+
+    if(isWithdrawalSuccess) {
+      window.alert('Owner fee pool was successfully withdrawn! ');
+      this.currentOwnerFeePoolBalance = await this.auctionFactoryService.getOwnerFeePoolBalance(ethereum);
+    } else window.alert('Withdrawal of owner fee pool was unsuccessful try again');
+    this.isAttemptingToWithdrawOwnerFee = false;
+    await this.ngOnInit();
+  }
 }
