@@ -14,6 +14,8 @@ export class AuctionFactoryOwnerComponent implements OnInit {
   isAttemptingToWithdrawOwnerFee: Boolean;
   isLoadingFeePoolBalance: Boolean;
   currentOwnerFeePoolBalance: string;
+  isOwnerLoggedIn: Boolean;
+  accumulatedFees: string;
 
 
   withdrawOwnerForm = this.fb.group({
@@ -28,12 +30,18 @@ export class AuctionFactoryOwnerComponent implements OnInit {
     this.isAttemptingToWithdrawOwnerFee = false;
     this.isLoadingFeePoolBalance = true;
     this.currentOwnerFeePoolBalance = '';
+    this.isOwnerLoggedIn = false;
+    this.accumulatedFees = '';
    }
 
   async ngOnInit(): Promise<void> {
     const { ethereum } = window;
+    await this.auctionFactoryService.checkWalletConnection(ethereum);
+    await this.auctionFactoryService.loadContractOwner(ethereum);
     this.currentOwnerFeePoolBalance = await this.auctionFactoryService.getOwnerFeePoolBalance(ethereum);
     this.isLoadingFeePoolBalance = false;
+    this.isOwnerLoggedIn = this.auctionFactoryService.determineIsCurrentAccountFactoryOwner();
+    this.accumulatedFees = await this.auctionFactoryService.getAccumulatedFees();
   }
 
   async attemptToWithdrawOwnerFeePool() {

@@ -191,7 +191,14 @@ export class AuctionFactoryService {
     }
   }
 
-  // getDeployed Auction Implementations
+  // determineIsCurrentAccountFactoryOwner()
 
+  // getAccumulatedFees()
+
+  // loadContractOwner()
+
+  // checkWalletConnection()
+
+  // getDeployed Auction Implementations
   
 }
