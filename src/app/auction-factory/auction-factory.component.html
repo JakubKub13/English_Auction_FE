@@ -1,8 +1,8 @@
-
+<div>The right place to auction your tokenized Carbon certificates</div>
 
 <div class="card-footer py-3 d-flex flex-column gap-3">
     <form
-      class="d-flex flex-column gap-3 w-100"
+      class="d-flex flex-column gap-3 w-50"
       [formGroup]="createAuctionForm"
       (ngSubmit)="attemptToCreateAuction()"
     >
@@ -49,7 +49,7 @@
         />
       </div>
     
-      <button type="submit" class="btn btn-outline-secondary w-100 py-1">
+      <button type="submit" class="btn btn-outline-primary w-50 py-1">
         <span *ngIf="isAttemptingToCreateAuction === false">Create Auction</span>
         <div
           *ngIf="isAttemptingToCreateAuction === true"
