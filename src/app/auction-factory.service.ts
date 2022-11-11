@@ -192,12 +192,15 @@ export class AuctionFactoryService {
   }
 
   // determineIsCurrentAccountFactoryOwner()
+  determineIsCurrentAccountLotteryContractOwner(): Boolean {
+    console.log(`Owner: ${this.contractOwner}`);
+    console.log(`LoggedIn: ${this.isLoggedIn}`);
+    return(
+      this.contractOwner.toLowerCase().trim() === this.currentAccount.toLowerCase().trim()
+    );
+  }
 
-  // getAccumulatedFees()
-
-  // loadContractOwner()
-
-  // checkWalletConnection()
+  
 
   // getDeployed Auction Implementations
   
