@@ -154,10 +154,44 @@ export class AuctionFactoryService {
       return false
     } 
   }
+  // getOwnerFeePoolBalance
+  async getOwnerFeePoolBalance(ethereum: any) {
+     try { 
+      const currentWallet = await this.getMetamaskWalletSigner(ethereum);
+      const auctionFactory = await this.getAuctionFactoryContract();
+      const currentAmountInOwnerFeePool = await auctionFactory.connect(currentWallet).ownerFeePool();
+      return bigNumberToETHString(currentAmountInOwnerFeePool);
+    } catch (error) {
+      console.log(`Can not get feePool balance: ${error}`);
+      window.alert(`Can not get feePool balance: ${error}`);
+      return '0';
+    }
+  }
+
+  // ownerFeePoolWithdraw
+  async ownerFeePoolWithdraw(
+    ethereum: any,
+    addressToSendFundsTo: string,
+    amountToWithdraw: Number,
+  ): Promise<Boolean> {
+    try {
+      const currentWallet = await this.getMetamaskWalletSigner(ethereum)
+      const auctionFactory = await this.getAuctionFactoryContract();
+      const ownerWithdrawTx = await auctionFactory.connect(currentWallet).ownerFeeWithdraw(
+        currentWallet._address,
+        ethers.utils.parseEther(amountToWithdraw.toString())
+      );
+      const auctionImplementTxReceipt = await this.provider.getTransactionReceipt(ownerWithdrawTx.hash);
+      console.log(auctionImplementTxReceipt)
+      return true;
+    } catch (error) {
+      console.log(error)
+      window.alert(error)
+      return false
+    }
+  }
 
   // getDeployed Auction Implementations
-
-  
 
   
 }
