@@ -11,6 +11,23 @@ import currentEpoch from 'src/helpers/currentEpoch';
   providedIn: 'root'
 })
 export class AuctionImplementationService {
+  currentAccount: string
+  isLoggedIn: Boolean
+  Seller: string
+  auctionImplementationAddress: string
+  nftAddress: string
+  mDAIaddress: string
+
+  addressesJSON: {
+    auctionFactory: string,
+    auctionImplementation4: string,
+    mDAI: string,
+    nft: string
+  }
+
+  auctionImplementationJSON: any
+  mDaiJSON: any
+  nftJSON: any
 
   constructor() { }
 }
