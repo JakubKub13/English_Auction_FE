@@ -29,5 +29,19 @@ export class AuctionImplementationService {
   mDaiJSON: any
   nftJSON: any
 
-  constructor() { }
+  provider: ethers.providers.JsonRpcProvider
+
+  constructor() { 
+    this.currentAccount = '';
+    this.isLoggedIn = false;
+    this.Seller = '';
+    this.addressesJSON = AddressesJSON;
+    this.auctionImplementationAddress = this.addressesJSON.auctionImplementation4;
+    this.nftAddress = this.addressesJSON.nft;
+    this.mDAIaddress = this.addressesJSON.mDAI;
+    this.auctionImplementationJSON = AuctionImplementationJSON;
+    this.mDaiJSON = mockDaiJSON;
+    this.nftJSON = NftJSON;
+    this.provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.g.alchemy.com/v2/UYC8suTjPixZ8Ku7w4YQcEUuLGwKqP70");
+  }
 }
