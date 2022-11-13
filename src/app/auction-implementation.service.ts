@@ -84,4 +84,28 @@ export class AuctionImplementationService {
     this.isLoggedIn = true;
     return this.currentAccount
   }
+
+  // Get metamask wallet signer
+  async getMetamaskWalletSigner(ethereum: any) {
+    const metamaskWalletProvider = new ethers.providers.Web3Provider(ethereum);  //window.ethereum
+    return metamaskWalletProvider.getSigner();
+  }
+
+  //get Wallet Balance in ETH or Matic
+  async getWalletBalance(ethereum: any) {
+    const metamaskWalletProvider = new ethers.providers.Web3Provider(ethereum);
+    return bigNumberToETHString(await metamaskWalletProvider.getSigner().getBalance());
+  }
+
+  // Initialize AuctionFactory contract
+  async getAuctionFactoryContract(signer?: ethers.Signer) {
+    let auctionImplementationContract: ethers.Contract;
+
+    if(signer) {
+      auctionImplementationContract = new ethers.Contract(this.auctionImplementationAddress, this.auctionImplementationJSON.abi, signer);
+    } else {
+      auctionImplementationContract = new ethers.Contract(this.auctionImplementationAddress, this.auctionImplementationJSON.abi, this.provider);
+    }
+    return auctionImplementationContract;
+  }
 }
