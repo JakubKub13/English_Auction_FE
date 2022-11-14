@@ -14,10 +14,20 @@ declare var window: any
   styleUrls: ['./auction-implementation.component.css']
 })
 export class AuctionImplementationComponent implements OnInit {
+  isLoadingImplementationsAddresses: Boolean;
+  ImplenetantionAdress: string
 
-  constructor() { }
+  constructor(private auctionFactoryService: AuctionFactoryService) {
+    this.isLoadingImplementationsAddresses = true;
+    this.ImplenetantionAdress = "";
+   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const { ethereum } = window;
+    this.isLoadingImplementationsAddresses = false;
+    await this.auctionFactoryService.checkWalletConnection(ethereum);
+    await this.auctionFactoryService.loadContractOwner(ethereum);
+    this.ImplenetantionAdress = await this.auctionFactoryService.getAuctionImplementationAddresses(ethereum)
   }
 
 }

@@ -1,10 +1,13 @@
-<p>auction-implementation works!</p>
-<section>
-    <div>
-        <h4>Deployed auction addresses: </h4>
-    </div>
-        <p>Auction implementation address: </p>
-    <div>
 
-    </div>
-</section>
+<div>
+    <div class="d-flex flex-column align-items-center">
+        <span
+          class="fw-bolder"
+          *ngIf="
+          isLoadingImplementationsAddresses === false"
+        >
+          {{ lengthOfImplenetantionsAdresses }} Number of deployed auction implementation
+        </span>
+        
+      </div>
+</div>
