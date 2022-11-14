@@ -98,7 +98,7 @@ export class AuctionImplementationService {
   }
 
   // Initialize AuctionFactory contract
-  async getAuctionFactoryContract(signer?: ethers.Signer) {
+  async getAuctionImpementationContract(signer?: ethers.Signer) {
     let auctionImplementationContract: ethers.Contract;
 
     if(signer) {
@@ -111,12 +111,34 @@ export class AuctionImplementationService {
 
   // determineIsCurrentAccountSeller()
   determineIsCurrentAccountSeller(): Boolean {
-    console.log(`Owner: ${this.Seller}`);
+    console.log(`Seller: ${this.Seller}`);
     console.log(`LoggedIn: ${this.isLoggedIn}`);
     return(
       this.Seller.toLowerCase().trim() === this.currentAccount.toLowerCase().trim()
     );
   }
+
+  // Get NFT address
+
+  // Get NFT token ID
+
+  // Get NFT uri
+
+  // Get Highest Bid
+
+  // Get Highest bidder
+
+  // Get payment token address
+
+  // Start auction
+
+  // Bid for NFT
+
+  // Withdraw from auction
+
+  // END auction
+
+  
 
 
   

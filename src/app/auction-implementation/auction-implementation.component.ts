@@ -27,7 +27,6 @@ export class AuctionImplementationComponent implements OnInit {
     this.isLoadingImplementationsAddresses = false;
     await this.auctionFactoryService.checkWalletConnection(ethereum);
     await this.auctionFactoryService.loadContractOwner(ethereum);
-    this.ImplenetantionAdress = await this.auctionFactoryService.getAuctionImplementationAddresses(ethereum)
   }
 
 }
