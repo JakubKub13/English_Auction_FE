@@ -203,5 +203,14 @@ export class AuctionFactoryService {
   
 
   // getDeployed Auction Implementations
-  
+  async getAuctionImplementationAddresses(ethereum: any ) {
+    try {
+      const currentWallet = await this.getMetamaskWalletSigner(ethereum);
+      const auctionFactory = await this.getAuctionFactoryContract();
+      const lengthArr = await auctionFactory.connect(currentWallet).deployedAuctions.length;
+      console.log(lengthArr);
+    } catch {
+      console.log("Fuck")
+    }
+  }
 }
