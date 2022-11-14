@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuctionFactoryService } from '../auction-factory.service';
-import { MDaiService } from '../m-dai.service';
-import { NftService } from '../nft.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ethers } from 'ethers';
 import bigNumberToETHString from 'src/helpers/bigNumberToETHString';
@@ -30,8 +28,6 @@ export class AuctionFactoryComponent implements OnInit {
 
   constructor(
     private auctionFactoryService: AuctionFactoryService,
-    private mDaiService: MDaiService,
-    private nftService: NftService,
     private fb: FormBuilder
   ) {
     this.isAttemptingToCreateAuction = false;
@@ -43,7 +39,6 @@ export class AuctionFactoryComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const { ethereum } = window;
-    this.currentTokenBalanceForCurrentWallet = await this.mDaiService.getDaiTokenBalance(ethereum);
     this.currentWalletBalance = await this.auctionFactoryService.getWalletBalance(ethereum);
     this.isLoadingBalance = false;
   }
