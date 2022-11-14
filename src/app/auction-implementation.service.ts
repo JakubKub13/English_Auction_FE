@@ -97,7 +97,31 @@ export class AuctionImplementationService {
     return bigNumberToETHString(await metamaskWalletProvider.getSigner().getBalance());
   }
 
-  // Initialize AuctionFactory contract
+  // Initialize mDAI contract
+  async getmDAIContract(signer?: ethers.Signer) {
+    let mDai: ethers.Contract;
+
+    if(signer) {
+      mDai = new ethers.Contract(this.mDAIaddress, this.mDaiJSON.abi, signer);
+    } else {
+      mDai = new ethers.Contract(this.mDAIaddress, this.mDaiJSON.abi, this.provider);
+    }
+    return mDai;
+  }
+
+  // Initialize nft contract
+  async nftContract(signer?: ethers.Signer) {
+    let nft: ethers.Contract;
+
+    if(signer) {
+      nft = new ethers.Contract(this.nftAddress, this.nftJSON.abi, signer);
+    } else {
+      nft = new ethers.Contract(this.nftAddress, this.nftJSON.abi, this.provider);
+    }
+    return nft;
+  }
+
+  // Initialize AuctionImplementation contract
   async getAuctionImpementationContract(signer?: ethers.Signer) {
     let auctionImplementationContract: ethers.Contract;
 
