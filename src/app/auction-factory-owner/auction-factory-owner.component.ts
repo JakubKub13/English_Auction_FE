@@ -40,7 +40,7 @@ export class AuctionFactoryOwnerComponent implements OnInit {
     await this.auctionFactoryService.loadContractOwner(ethereum);
     this.currentOwnerFeePoolBalance = await this.auctionFactoryService.getOwnerFeePoolBalance(ethereum);
     this.isLoadingFeePoolBalance = false;
-    this.isOwnerLoggedIn = this.auctionFactoryService.determineIsCurrentAccountLotteryContractOwner();
+    this.isOwnerLoggedIn = this.auctionFactoryService.determineIsCurrentAccountContractOwner();
     this.accumulatedFees = await this.auctionFactoryService.getOwnerFeePoolBalance(ethereum);
   }
 

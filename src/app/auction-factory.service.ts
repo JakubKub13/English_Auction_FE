@@ -192,7 +192,7 @@ export class AuctionFactoryService {
   }
 
   // determineIsCurrentAccountFactoryOwner()
-  determineIsCurrentAccountLotteryContractOwner(): Boolean {
+  determineIsCurrentAccountContractOwner(): Boolean {
     console.log(`Owner: ${this.contractOwner}`);
     console.log(`LoggedIn: ${this.isLoggedIn}`);
     return(

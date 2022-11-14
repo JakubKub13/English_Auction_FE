@@ -108,4 +108,15 @@ export class AuctionImplementationService {
     }
     return auctionImplementationContract;
   }
+
+  // determineIsCurrentAccountSeller()
+  determineIsCurrentAccountSeller(): Boolean {
+    console.log(`Owner: ${this.Seller}`);
+    console.log(`LoggedIn: ${this.isLoggedIn}`);
+    return(
+      this.Seller.toLowerCase().trim() === this.currentAccount.toLowerCase().trim()
+    );
+  }
+
+
 }
